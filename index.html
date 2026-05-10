@@ -17,7 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 100;
         margin: 0;
         overflow: hidden;
         font-family: "Courier New", Courier, monospace;
@@ -25,6 +25,22 @@
       .gamescreen {
         width: 800px;
         height: 450px;
+      }
+      .btn {
+        cursor: pointer;
+      }
+      .btn:hover {
+        transform: scale(1.1);
+      }
+      .general {
+        display:none;
+        background-image: url('asset/GUI/container.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+            margin-left: auto;
+            margin-right: auto;
+        height: 379px;
+        width:357px;
       }
     </style>
   </head>
@@ -38,38 +54,77 @@
         align-items: center;
       "
     >
-      <img
-        src="asset/GUI/title.gif"
-        height="90"
-        style="
-          position: relative;
-          top: 150px;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-        "
-      />
-
-      <!--buttons-->
-      <div
-        style="
-          position: relative;
-          top: 170px; /* Pushes it down from where it usually sits */
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        "
-      >
-        <img src="asset/GUI/settings_btn.png" width="60" height="60" />
+      <!--MAIN MENU-->
+      <div id="menu">
         <img
-          src="asset/GUI/start_btn.png"
-          width="190"
-          style="margin: 0 15px 0 15px"
+          src="asset/GUI/title.gif"
+          height="90"
+          style="
+            position: relative;
+            top: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          "
         />
-        <img src="asset/GUI/leaderboard_btn.png" width="60" height="60" />
-      </div>
-    </div>
 
-    <script></script>
+        <!--buttons-->
+        <div
+          style="
+            position: relative;
+            top: 170px; /* Pushes it down from where it usually sits */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <img
+            id="settings-btn"
+            class="btn"
+            src="asset/GUI/settings_btn.png"
+            width="80"
+            height="70"
+          />
+          <img
+            id="start-btn"
+            class="btn"
+            src="asset/GUI/start_btn.png"
+            width="190"
+          />
+          <img
+            id="leaderboard-btn"
+            class="btn"
+            src="asset/GUI/leaderboard_btn.png"
+            width="80"
+            height="70"
+          />
+        </div>
+      </div>
+
+      <!--SETTINGS-->
+      <div id="settings" class="general">
+
+      </div>
+
+      <!--LEADERBOARD
+      <div id="leaderboard" class="general">
+
+      </div>
+
+      DIFFICULTIES
+      <div id="difficulties" class="general">
+      </div>-->
+
+    <script>
+      $(document).ready(function () {
+        //press start -> choose difficulty
+        $("#settings-btn").on("click", function () {
+          $("#menu").fadeOut(600, function() {
+            // This waits for the menu to disappear before showing settings
+            $("#settings").fadeIn();
+          });
+        });
+      });
+    </script>
   </body>
 </html>
