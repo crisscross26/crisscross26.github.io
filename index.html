@@ -6,8 +6,165 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        
+            canvas {
+                image-rendering: pixelated;
+                image-rendering: crisp-edges;
+                display: block;
+                margin: 0 auto;
+                background-color: #87CEEB; /* Sky Blue fallback */
+                border: 4px solid #333;
+                cursor: pointer;
+            }
+
+            body {
+                background-color: #222;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                overflow: hidden;
+                font-family: 'Courier New', Courier, monospace;
+            }
+        </style>
 </head>
-<body style="background-image: url(asset/background/free1.JPG);">
-    <p>hello</p>
+<body>
+
+<canvas id="gameCanvas" width="800" height="450"></canvas>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Colors based on your design
+    const COLORS = {
+        sky: '#99d9ea',
+        grass: '#4ca33e',
+        dirt: '#73463c',
+        titleYellow: '#ffcc4d',
+        titleShadow: '#d4a017',
+        buttonGreen: '#88b04b',
+        buttonBorder: '#3d5229'
+    };
+
+    function draw() {
+        // 1. Draw Sky
+        ctx.fillStyle = COLORS.sky;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 2. Draw Clouds (Simple circles for pixel feel)
+        ctx.fillStyle = "white";
+        drawCloud(100, 50);
+        drawCloud(400, 30);
+        drawCloud(700, 60);
+
+        // 3. Draw Ground (Dirt and Grass)
+        ctx.fillStyle = COLORS.dirt;
+        ctx.fillRect(0, 350, canvas.width, 100);
+        
+        // Grass top zigzag
+        ctx.fillStyle = COLORS.grass;
+        ctx.fillRect(0, 330, canvas.width, 20);
+        for(let i = 0; i < canvas.width; i += 20) {
+            ctx.beginPath();
+            ctx.moveTo(i, 330);
+            ctx.lineTo(i + 10, 315);
+            ctx.lineTo(i + 20, 330);
+            ctx.fill();
+        }
+
+        // 4. Draw Trees
+        drawTree(80, 240);
+        drawTree(720, 240);
+
+        // 5. Draw Title: BOUNCY BOUNTY
+        ctx.textAlign = "center";
+        ctx.font = "bold 80px 'Arial Black', sans-serif";
+        
+        // Shadow/Outline
+        ctx.fillStyle = "black";
+        ctx.fillText("BOUNCY BOUNTY", canvas.width / 2 + 4, 184);
+        
+        // Main Text
+        ctx.fillStyle = COLORS.titleYellow;
+        ctx.fillText("BOUNCY BOUNTY", canvas.width / 2, 180);
+
+        // 6. Center "Press Start" Button
+        drawMainButton(canvas.width / 2 - 125, 230, 250, 70, "Press Start");
+
+        // 7. Circular Icons (Settings and Crown)
+        drawCircleButton(280, 265, 30, "⚙️"); // Gear Emoji
+        drawCircleButton(520, 265, 30, "👑"); // Crown Emoji
+    }
+
+    function drawCloud(x, y) {
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI * 2);
+        ctx.arc(x + 25, y - 10, 25, 0, Math.PI * 2);
+        ctx.arc(x + 50, y, 20, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function drawTree(x, y) {
+        // Trunk
+        ctx.fillStyle = "#5d3a1a";
+        ctx.fillRect(x - 10, y + 40, 20, 50);
+        // Leaves
+        ctx.fillStyle = COLORS.grass;
+        ctx.beginPath();
+        ctx.arc(x, y + 10, 45, 0, Math.PI * 2);
+        ctx.fill();
+        // Bush next to tree
+        ctx.beginPath();
+        ctx.arc(x + 50, y + 80, 15, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function drawMainButton(x, y, w, h, text) {
+        ctx.fillStyle = COLORS.buttonBorder;
+        ctx.roundRect(x - 4, y - 4, w + 8, h + 8, 15);
+        ctx.fill();
+        
+        ctx.fillStyle = COLORS.buttonGreen;
+        ctx.roundRect(x, y, w, h, 12);
+        ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.font = "24px 'Courier New'";
+        ctx.fillText(text, x + w / 2, y + h / 2 + 8);
+    }
+
+    function drawCircleButton(x, y, r, emoji) {
+        ctx.fillStyle = COLORS.buttonBorder;
+        ctx.beginPath();
+        ctx.arc(x, y, r + 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = COLORS.buttonGreen;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.font = "24px serif";
+        ctx.fillText(emoji, x, y + 8);
+    }
+
+    // Initialize
+    draw();
+
+    // Interaction example
+    canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // Simple check if clicked in the center button area
+        if (mouseX > 275 && mouseX < 525 && mouseY > 230 && mouseY < 300) {
+            alert("Game Starting...");
+        }
+    });
+</script>
 </body>
 </html>
