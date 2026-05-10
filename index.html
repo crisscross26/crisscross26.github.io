@@ -4,57 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bouncy Bounty</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
     />
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <style>
       body {
         background-color: #222;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100;
+        height: 100vh;
         margin: 0;
         overflow: hidden;
         font-family: "Courier New", Courier, monospace;
       }
+
       .gamescreen {
         width: 800px;
         height: 450px;
-      }
-      .btn {
-        cursor: pointer;
-      }
-      .btn:hover {
-        transform: scale(1.1);
-      }
-      .general {
-        display:none;
-        background-image: url('asset/GUI/container.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-            margin-left: auto;
-            margin-right: auto;
-        height: 379px;
-        width:357px;
-      }
-    </style>
-  </head>
-  <body>
-    <div
-      class="gamescreen"
-      style="
-        background-image: url('asset/background/free1.JPG');
+        background-image: url("asset/background/free1.JPG");
         background-repeat: no-repeat;
         background-size: cover;
         align-items: center;
-      "
-    >
-      <!--MAIN MENU-->
+      }
+
+      .btn {
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: scale(1.1);
+      }
+
+      .general {
+        display: none;
+        background-image: url("asset/GUI/container.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-left: auto;
+        margin-right: auto;
+        height: 383px;
+        width: 377px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="gamescreen">
       <div id="menu">
         <img
           src="asset/GUI/title.gif"
@@ -68,11 +69,10 @@
           "
         />
 
-        <!--buttons-->
         <div
           style="
             position: relative;
-            top: 170px; /* Pushes it down from where it usually sits */
+            top: 170px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -85,12 +85,14 @@
             width="80"
             height="70"
           />
+
           <img
             id="start-btn"
             class="btn"
             src="asset/GUI/start_btn.png"
             width="190"
           />
+
           <img
             id="leaderboard-btn"
             class="btn"
@@ -101,29 +103,112 @@
         </div>
       </div>
 
-      <!--SETTINGS-->
       <div id="settings" class="general">
-
+        <img
+          id="return-btn"
+          class="btn"
+          src="asset/GUI/back_btn.png"
+          width="60"
+          style="position: relative; top: 20px; left: 30px"
+        />
       </div>
 
-      <!--LEADERBOARD
       <div id="leaderboard" class="general">
-
+        <img
+          id="return-btn-leaderboard"
+          class="btn"
+          src="asset/GUI/back_btn.png"
+          width="60"
+          style="position: relative; top: 20px; left: 30px"
+        />
       </div>
 
-      DIFFICULTIES
-      <div id="difficulties" class="general">
-      </div>-->
+      <div id="difficulty" class="general">
+        <img
+          id="return-btn-difficulty"
+          class="btn"
+          src="asset/GUI/back_btn.png"
+          width="60"
+          style="position: relative; top: 20px; left: 30px"
+        />
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 15px;
+          "
+        >
+          <img
+            id="easy-btn"
+            class="btn"
+            src="asset/GUI/easy_btn.png"
+            width="180"
+          />
+
+          <img
+            id="normal-btn"
+            class="btn"
+            src="asset/GUI/normal_btn.png"
+            width="180"
+          />
+
+          <img
+            id="hard-btn"
+            class="btn"
+            src="asset/GUI/hard_btn.png"
+            width="180"
+          />
+        </div>
+      </div>
+    </div>
 
     <script>
       $(document).ready(function () {
-        //press start -> choose difficulty
         $("#settings-btn").on("click", function () {
-          $("#menu").fadeOut(600, function() {
-            // This waits for the menu to disappear before showing settings
+          $("#menu").fadeOut(600, function () {
             $("#settings").fadeIn();
           });
         });
+
+        $("#return-btn").on("click", function () {
+          $("#settings").fadeOut(600, function () {
+            $("#menu").fadeIn();
+          });
+        });
+
+        $("#start-btn").on("click", function () {
+          $("#menu").fadeOut(600, function () {
+            $("#difficulty").fadeIn();
+          });
+        });
+
+        $("#return-btn-difficulty").on("click", function () {
+          $("#difficulty").fadeOut(600, function () {
+            $("#menu").fadeIn();
+          });
+        });
+
+        $("#leaderboard-btn").on("click", function () {
+          $("#menu").fadeOut(600, function () {
+            $("#leaderboard").fadeIn();
+          });
+        });
+
+        $("#return-btn-leaderboard").on("click", function () {
+          $("#leaderboard").fadeOut(600, function () {
+            $("#menu").fadeIn();
+          });
+        });
+
+        $("#easy-btn").on("click", function () {});
+
+        $("#normal-btn").on("click", function () {});
+
+        $("#hard-btn").on("click", function () {});
       });
     </script>
   </body>
