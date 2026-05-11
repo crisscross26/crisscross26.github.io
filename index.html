@@ -9,53 +9,13 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
+    <link href="index.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-    <style>
-      body {
-        background-color: #222;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        overflow: hidden;
-        font-family: "Courier New", Courier, monospace;
-      }
-
-      .gamescreen {
-        width: 800px;
-        height: 450px;
-        background-image: url("asset/background/free1.JPG");
-        background-repeat: no-repeat;
-        background-size: cover;
-        align-items: center;
-      }
-
-      .btn {
-        cursor: pointer;
-      }
-
-      .btn:hover {
-        transform: scale(1.1);
-      }
-
-      .general {
-        display: none;
-        background-image: url("asset/GUI/container.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-        margin-left: auto;
-        margin-right: auto;
-        height: 383px;
-        width: 377px;
-      }
-    </style>
   </head>
 
   <body>
     <div class="gamescreen">
+      <!--MAIN MENU-->
       <div id="menu">
         <img
           src="asset/GUI/title.gif"
@@ -103,34 +63,76 @@
         </div>
       </div>
 
+      <!--SETTINGS-->
       <div id="settings" class="general">
         <img
           id="return-btn"
           class="btn"
           src="asset/GUI/back_btn.png"
           width="60"
-          style="position: relative; top: 20px; left: 30px"
+          style="position: relative; top: 30px; left: 30px"
         />
+        <h1>Settings</h1>
+
+        <table>
+          <tr>
+            <td>Music</td>
+            <td>
+              <img
+                id="music-btn"
+                src="asset/GUI/sound.png"
+                data-alt-src="asset/GUI/mute.png"
+                width="30"
+              />
+            </td>
+            <td><input type="range" id="music-vol" /></td>
+          </tr>
+
+          <tr>
+            <td>SFX</td>
+            <td>
+              <img id="sfx-btn" src="asset/GUI/sound.png" width="30" />
+            </td>
+            <td><input type="range" id="sfx-vol" /></td>
+          </tr>
+        </table>
       </div>
 
+      <!--LEADERBOARD-->
       <div id="leaderboard" class="general">
         <img
           id="return-btn-leaderboard"
           class="btn"
           src="asset/GUI/back_btn.png"
           width="60"
-          style="position: relative; top: 20px; left: 30px"
+          style="position: relative; top: 30px; left: 30px"
         />
+
+        <img
+          src="asset/GUI/crown.png"
+          width="60"
+          style="
+            position: relative;
+            top: 14px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        />
+        <h1>Best Score</h1>
       </div>
 
+      <!--GAME MODES-->
       <div id="difficulty" class="general">
         <img
           id="return-btn-difficulty"
           class="btn"
           src="asset/GUI/back_btn.png"
           width="60"
-          style="position: relative; top: 20px; left: 30px"
+          style="position: relative; top: 30px; left: 30px"
         />
+
+        <h1>Difficulties</h1>
 
         <div
           style="
@@ -138,8 +140,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100%;
-            gap: 15px;
+            margin: 30px 0 0 0;
           "
         >
           <img
@@ -165,51 +166,6 @@
         </div>
       </div>
     </div>
-
-    <script>
-      $(document).ready(function () {
-        $("#settings-btn").on("click", function () {
-          $("#menu").fadeOut(600, function () {
-            $("#settings").fadeIn();
-          });
-        });
-
-        $("#return-btn").on("click", function () {
-          $("#settings").fadeOut(600, function () {
-            $("#menu").fadeIn();
-          });
-        });
-
-        $("#start-btn").on("click", function () {
-          $("#menu").fadeOut(600, function () {
-            $("#difficulty").fadeIn();
-          });
-        });
-
-        $("#return-btn-difficulty").on("click", function () {
-          $("#difficulty").fadeOut(600, function () {
-            $("#menu").fadeIn();
-          });
-        });
-
-        $("#leaderboard-btn").on("click", function () {
-          $("#menu").fadeOut(600, function () {
-            $("#leaderboard").fadeIn();
-          });
-        });
-
-        $("#return-btn-leaderboard").on("click", function () {
-          $("#leaderboard").fadeOut(600, function () {
-            $("#menu").fadeIn();
-          });
-        });
-
-        $("#easy-btn").on("click", function () {});
-
-        $("#normal-btn").on("click", function () {});
-
-        $("#hard-btn").on("click", function () {});
-      });
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
