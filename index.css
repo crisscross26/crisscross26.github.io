@@ -1,1 +1,58 @@
-body { background-image: url(asset/background/free1.JPG); }
+body {
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: "Courier New", Courier, monospace;
+}
+
+h1 {
+  text-align: center;
+  position: relative;
+  top: 30px;
+}
+
+table {
+  position: relative;
+  top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 30px;
+}
+
+td {
+  padding: 5px;
+}
+
+.gamescreen {
+  width: 800px;
+  height: 450px;
+  background-image: url("asset/background/free1.JPG");
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.general {
+  display: none;
+  position: relative;
+  top: 15px;
+  background-image: url("asset/GUI/container.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: auto;
+  margin-right: auto;
+  height: 383px;
+  width: 377px;
+}
