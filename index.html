@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bouncy Bounty</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="index.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+    </style>
+  </head>
+
+  <body>
+    <audio id="bgmusic" loop prefetch="auto">
+  <source src="assets/audio/bgm.mp3" type="audio/mpeg" />
+  Your browser does not support the audio element.
+</audio>
+    <!--entire gamescreen-->
+    <div class="gamescreen">
+      <!--MAIN MENU-->
+      <div id="menu">
+        <!--BOUNCY BOUNTY label-->
+        <img
+          src="assets/GUI/title.gif"
+          height="120"
+          style="
+            position: relative;
+            top: 100px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        />
+
+        <div
+          style="
+            position: relative;
+            top: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <img
+            id="settings-btn"
+            class="btn"
+            src="assets/GUI/buttons/settings_btn.png"
+            width="90"
+            height="80"
+          />
+
+          <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0 0 0;
+          "
+        >
+          <img
+            id="start-btn"
+            class="btn"
+            src="assets/GUI/buttons/start_btn.png"
+            width="220"
+          />
+
+          <img
+            id="shop-btn"
+            class="btn"
+            src="assets/GUI/buttons/shop_btn.png"
+            width="180"
+          />
+
+          <img
+            id="tutorial-btn"
+            class="btn"
+            src="assets/GUI/buttons/tutorial_btn.png"
+            width="180"
+          />
+        </div>
+
+          
+
+          <img
+            id="leaderboard-btn"
+            class="btn"
+            src="assets/GUI/buttons/leaderboard_btn.png"
+            width="90"
+            height="80"
+          />
+
+          
+        </div>
+      </div>
+
+      <!--SETTINGS-->
+      <div id="settings" class="general">
+        <img
+          id="return-btn"
+          class="btn"
+          src="assets/GUI/buttons/back_btn.png"
+          width="60"
+          style="position: relative; top: 30px; left: 30px"
+        />
+        <h1>SETTINGS</h1>
+
+        <!-- music and sfx volume -->
+        <table>
+          <tr>
+            <td>Music</td>
+            <td>
+              <img
+                id="music-btn"
+                src="assets/GUI/buttons/unmute.png"
+                data-alt-src="assets/GUI/buttons/mute.png"
+                width="30"
+              />
+            </td>
+            <td><input type="range" id="music-vol" /></td>
+          </tr>
+
+          <tr>
+            <td>SFX</td>
+            <td>
+              <img id="sfx-btn" src="assets/GUI/buttons/unmute.png" width="30" />
+            </td>
+            <td><input type="range" id="sfx-vol" /></td>
+          </tr>
+        </table>
+      </div>
+
+      <!--LEADERBOARD-->
+      <div id="leaderboard" class="general">
+        <img
+          id="return-btn-leaderboard"
+          class="btn"
+          src="assets/GUI/buttons/back_btn.png"
+          width="60"
+          style="position: relative; top: 30px; left: 30px"
+        />
+
+        <img
+          src="assets/GUI/crown.png"
+          width="60"
+          style="
+            position: relative;
+            top: 14px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          "
+        />
+        <h1>BEST SCORE</h1>
+      </div>
+
+      <!--/// GAME MODES ///-->
+      <div id="difficulty" class="general">
+        <img
+          id="return-btn-difficulty"
+          class="btn"
+          src="assets/GUI/buttons/back_btn.png"
+          width="60"
+          style="position: relative; top: 30px; left: 30px"
+        />
+
+        <h1>DIFFICULTIES</h1>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0 0 0;
+          "
+        >
+          <img
+            id="easy-btn"
+            class="btn"
+            src="assets/GUI/buttons/easy_btn.png"
+            width="180"
+          />
+
+          <img
+            id="normal-btn"
+            class="btn"
+            src="assets/GUI/buttons/normal_btn.png"
+            width="180"
+          />
+
+          <img
+            id="hard-btn"
+            class="btn"
+            src="assets/GUI/buttons/hard_btn.png"
+            width="180"
+          />
+        </div>
+      </div>
+
+      <!--actual game-->
+      <canvas id="gameCanvas" width="400" height="565"></canvas>
+
+      <!--//// SHOP ////-->
+      <div id="shop" class="general">
+        <img
+          id="return-btn-shop"
+          class="btn"
+          src="assets/GUI/buttons/back_btn.png"
+          width="60"
+          style="position: relative; top: 30px; left: 30px"
+        />
+
+        <h1>SHOP</h1>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0 0 0;
+          "
+        >
+          <img
+            id="skin-btn"
+            class="btn"
+            src="assets\GUI\shop\skins\btn.png"
+            width="250"
+          />
+
+          <img
+            id="bg-btn"
+            class="btn"
+            src="assets\GUI\shop\bg\btn.png"
+            width="250"
+          />
+
+          <img
+            id="upg-btn"
+            class="btn"
+            src="assets\GUI\shop\upg_btn.png"
+            width="250"
+          />
+        </div>
+      </div>
+
+      <!--END OF gamescreen-->
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
